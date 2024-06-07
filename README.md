@@ -4,7 +4,7 @@
 
 - Kotlin
 - Spring Boot
-- Java 21 (install using SDK Man)
+- Java 21
 - REST
 
 For starters, it will be created a Mock API. Therefore, databases, events and complex business rules won't be used. 
