@@ -8,7 +8,8 @@ import java.time.LocalDateTime
 @RequestMapping("/payments")
 class PaymentController {
 
-    val paymentList: MutableList<Payment> = mutableListOf(Payment(1, 100.5, "USD", "CREDIT_CARD", "Payment for purchase XWOZ", "PENDING", LocalDateTime.now()))
+    private val paymentList: MutableList<Payment> = mutableListOf(Payment(1, 100.5, "USD", "CREDIT_CARD", "Payment for purchase XWOZ", "PENDING", LocalDateTime.now()))
+    var newId = 2
 
     @GetMapping("/{id}")
     fun getPaymentById(@PathVariable id: Int): Payment? = paymentList.firstOrNull() { it.id == id }
@@ -16,13 +17,11 @@ class PaymentController {
     @PostMapping
     fun createPayment(@RequestBody request: CreatePayment): Payment {
 
-        var id = 2
-        val newPayment = Payment(id++, request.amount, request.currency, request.paymentMethod, request.description, "PENDING", LocalDateTime.now())
+        val newPayment = Payment(newId++, request.amount, request.currency, request.paymentMethod, request.description, "PENDING", LocalDateTime.now())
 
         paymentList.add(newPayment)
 
        return newPayment
 
     }
-
 }
